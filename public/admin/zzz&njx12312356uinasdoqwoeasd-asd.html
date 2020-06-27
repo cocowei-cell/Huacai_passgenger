@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>添加学院</title>
+  <script src="./../assets/lib/vue/vue.min.js"></script>
+  <script src="./../assets/lib/jquery/jquery.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      text-align: center;
+      justify-content: center;
+      display: flex;
+      width: 80%;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      margin-top: 3%;
+    }
+
+    .container h1 {
+      width: 100%;
+      font-size: 20px;
+      font-weight: bold;
+      color: pink;
+    }
+
+    .item input {
+      width: 100%;
+      height: 30px;
+      border-radius: 1px;
+      outline: 0;
+      border: 1px solid #ccc;
+      transition: all .1s;
+      text-indent: 10px;
+    }
+
+    .item input:focus {
+      border-color: #008d8d;
+      box-shadow: 0 0 2px #008d8d;
+    }
+
+    .item button {
+      width: 100%;
+      height: 30px;
+      margin-top: 15px;
+      border-radius: 4px;
+      outline: 0;
+      border: 0;
+      background-color: rgb(0, 161, 264);
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" id="app">
+    <h1>华彩志愿学院添加系统</h1>
+    <div style="width:100%;margin-top: 4%;">
+      <div class="item">
+        <input type="text" placeholder="输入学院名称,请准确输入" v-model="college">
+      </div>
+      <div class="item">
+        <button title="添加到数据库中" @click="add">添加到数据库中</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        college: ''
+      },
+      methods: {
+        add() {
+          if (this.college.trim().length === 0) {
+            alert('输入学院啊！卧槽,让我省点心好不');
+            return;
+          }
+          let that = this;
+          $.ajax({
+            type: 'post',
+            url: '/createcoll',
+            data: {
+              name: that.college
+            },
+            success: function (res) {
+              alert(res.msg);
+              that.college = '';
+            },
+            error: function (err) {
+              alert(err.responseJSON.msg);
+            }
+          })
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>华彩志愿</title>
+    <link rel="stylesheet" href="assets/css/fullpage.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="./js/jquery.js"></script>
+    <script src="./js/jqui.js"></script>
+    <script src="./js/fullpag.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.fn.fullpage({
+                slidesColor: ['#0075D1', '#C2E5FF', '#FDF6E1', '#F3F3F3', '#F9F3DC'],
+                navigation: true,
+                afterRender: function () {
+                    $('.screen-main span').each(function () {
+                        var $rel = $(this).attr('rel');
+                        var $arr = $rel.split(',');
+                        $(this).animate({
+                            left: $arr[2] + 'px',
+                            top: $arr[3] + 'px'
+                        }, 500);
+                    });
+                    $('.textInfo').fadeIn(500)
+                    $('.inner a').each(function () {
+                        var $rel = $(this).attr('rel');
+                        var $arr = $rel.split(',');
+                        $(this).animate({
+                            left: $arr[0] + 'px',
+                            top: $arr[1] + 'px'
+                        }, 500);
+                    });
+                },
+                afterLoad: function (anchorLink, index) {
+                    if (index == 1) {
+                        $('.screen-main span').each(function () {
+                            var $rel = $(this).attr('rel');
+                            var $arr = $rel.split(',');
+                            $(this).animate({
+                                left: $arr[2] + 'px',
+                                top: $arr[3] + 'px'
+                            }, 500);
+                        });
+                        $('.textInfo').fadeIn(500)
+                    }
+                    if (index == 2 || index == 3 || index == 4) {
+                        $('.inner').eq(index - 2).find('a').each(function () {
+                            var $rel = $(this).attr('rel');
+                            var $arr = $rel.split(',');
+                            $(this).animate({
+                                left: $arr[2] + 'px',
+                                top: $arr[3] + 'px'
+                            }, 500);
+                        });
+                    }
+                    if (index == 5) {
+                        $('.info-con a').fadeIn(1000);
+                        $('.info-con h2').fadeIn(1000);
+                    }
+                },
+                onLeave: function (index, direction) {
+                    if (index == 1) {
+                        $('.screen-main span').each(function () {
+                            var $rel = $(this).attr('rel');
+                            var $arr = $rel.split(',');
+                            $(this).animate({
+                                left: $arr[0] + 'px',
+                                top: $arr[1] + 'px'
+                            }, 500);
+                        });
+                        $('.textInfo').fadeOut(500)
+                    }
+                    if (index == 2 || index == 3 || index == 4) {
+                        $('.inner').eq(index - 2).find('a').each(function () {
+                            var $rel = $(this).attr('rel');
+                            var $arr = $rel.split(',');
+                            $(this).animate({
+                                left: $arr[0] + 'px',
+                                top: $arr[1] + 'px'
+                            }, 500);
+                        });
+                    }
+                    if (index == 5) {
+                        $('.info-con a').fadeOut(1000);
+                        $('.info-con h2').fadeOut(1000);
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="section section1">
+        <div class="screen-main">
+            <span class="s1" rel="-180,63,90,63">Energy</span>
+            <span class="s2" rel="-49,69,248,63">saving</span>
+            <span class="s3" rel="-56,369,312,63"></span>
+            <span class="s4" rel="1300,63,450,63">and</span>
+            <span class="s5" rel="-360,700,628,45">emission</span>
+            <span class="s6" rel="1329,700,768,45"></span>
+            <span class="s6" rel="1329,700,958,45">reduction</span>
+            <div class="textInfo">节能减排 , 绿色能源</div>
+        </div>
+    </div>
+    <!-- Energy saving and emission reduction -->
+    <div class="section">
+        <div class="science-inner inner">
+            <a class="stiteml st1" href="javascript:void(0)" rel="0,-350,0,7">你印象中的节能减排，绿色能源是怎样的？</a>
+            <a class="stiteml st4" href="javascript:void(0)" rel="0,-350,0,88">这样？</a>
+            <a class="stiteml st7" href="javascript:void(0)" rel="1010,163,592,163">这样？</a>
+            <a class="stitemr st12" href="javascript:void(0)" rel="-710,433,242,433">这样？</a>
+            <a class="stiteml st14" href="javascript:void(0)" rel="761,1050,761,498">还是...</a>
+            <a class="stimg1" href="javascript:void(0)" rel="0,-350,0,153"><img width="181" height="256"
+                    src="assets/img/timg (4).jpg"></a>
+            <a class="stimg2" href="javascript:void(0)" rel="980,2,275,71"><img width="300" height="250"
+                    src="assets/img/zxc.gif"></a>
+            <a class="stimg3" href="javascript:void(0)" rel="-407,350,413,350"><img width="313" height="215"
+                    src="assets/img/timg (5).jpg"></a>
+            <a class="stimg4" href="javascript:void(0)" rel="761,850,761,250"><img width="200" height="238"
+                    src="assets/img/timg (2).jpg"></a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="famous-inner inner">
+            <h2>而现实中的情形却都是：</h2>
+            <a class="faitemr fa1" href="javascript:void(0)" rel="90,-180,90,68">汽车尾气排放</a>
+            <a class="faiteml fa4" href="javascript:void(0)" rel="1280,203,514,99">摩托车尾气排放</a>
+            <a class="faiteml fa8" href="javascript:void(0)" rel="-300,533,32,339">工厂的乱排乱放</a>
+            <a class="faiteml fa12" href="javascript:void(0)" rel="1370,450,535,400">生活垃圾及废水</a>
+            <a class="faiteml fa12" href="javascript:void(0)" rel="1370,450,545,425"> 的不正规处理</a>
+            <a class="faiteml fa12" href="javascript:void(0)" rel="1370,450,500,540"> 而这些行为都在违背我们节能减排，绿色能源的思想</a>
+            <a class="faimg1" href="javascript:void(0)" rel="200,-180,229,10"><img width="169" height="169"
+                    src="assets/img/pg5.jpg"></a>
+            <a class="faimg2" href="javascript:void(0)" rel="980,77,655,77"><img width="169" height="169"
+                    src="assets/img/pg1.jpg"></a>
+            <a class="faimg3" href="javascript:void(0)" rel="980,366,225,316"><img width="249" height="169"
+                    src="assets/img/955.jpg"></a>
+            <a class="faimg4" href="javascript:void(0)" rel="-300,387,687,337"><img width="199" height="169"
+                    src="assets/img/222.jpg"></a>
+        </div>
+    </div>
+    <div class="section">
+        <div class="isJoin inner">
+            <h2>看了上面的相关介绍后,你是否想要了解更多关于绿色节能的相关知识？</h2>
+            <h2>或者想要奉献自己的一份力，让我们共同营造美好新生活</h2>
+            <a class="sojob1" href="javascript:void(0)" rel="-405,464,162,133">华彩志愿·减排手册</a>
+            <a class="sojob2" href="javascript:void(0)" rel="-405,464,162,190">少买不必要的衣服</a>
+            <a class="sojob3" href="javascript:void(0)" rel="-405,464,162,240">采用节能方式洗衣</a>
+            <a class="sojob4" href="javascript:void(0)" rel="-405,464,162,290">减少粮食浪费</a>
+            <a class="sojob5" href="javascript:void(0)" rel="-405,464,162,340">减少畜产品消费</a>
+            <a class="sojob6" href="javascript:void(0)" rel="-405,464,162,390">节能装修</a>
+            <a class="sojob7" href="javascript:void(0)" rel="-405,464,162,440">农村住宅使用节能砖</a>
+            <a class="sojob8" href="javascript:void(0)" rel="-405,464,162,490">采用节能的家庭照明方式</a>
+            <a class="sojob9" href="javascript:void(0)" rel="-405,464,130,580">完成每一项</a>
+            <a class="sojobA" href="javascript:void(0)" rel="-405,464,700,580">都可以获得奖杯哦</a>
+            <a href="javascript:void(0)" rel="-405,464,480,170">
+                <img src="assets/img/timg2.jpg" width="300">
+            </a>
+            <a href="javascript:void(0)" rel="-405,464,340,540">
+                <img src="assets/img/timg (3).jpg" width="300" height="230">
+            </a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="info">
+   
+            <h2>是否想了解更多关于华彩志愿的信息</h2>
+            <div class="info-con">
+                <a style="text-decoration:none;color:rgb(85, 26, 139);" href="./index.html?state=1">点击这里，一起加入华彩志愿吧</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

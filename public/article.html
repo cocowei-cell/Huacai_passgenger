@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>文章详情</title>
+  <link rel="stylesheet" href="assets/css/article1.css">
+  <link rel="stylesheet" href="assets/css/article.css">
+  <script src="./assets/lib/jquery/jquery.min.js"></script>
+  <script src="assets/lib/vue/vue.min.js"></script>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 头部框架开始 -->
+  <div class="header">
+    <div class="w1100">
+      <!-- 网站logo开始 -->
+      <h1 style="line-height: 60px;" class="logo fl">
+        <a href="javascript:;" style="color: #fff">华彩志愿</a>
+      </h1>
+      <!-- 网站logo结束 -->
+      <!-- 网站导航开始 -->
+      <ul class="navigation fr">
+        <li>
+          <a href="index.html">首页</a>
+        </li>
+      </ul>
+      <!-- 网站导航结束 -->
+    </div>
+  </div>
+  <!-- 头部框架结束 -->
+  <!-- 文章框架开始 -->
+  <div class="article" id="app">
+    <div class="w1100">
+      <div class="container">
+        <div class="article-header">
+          <h3 class="article-title" v-cloak>{{number+ ' '+ name.substr(0,1)+'...'}}</h3>
+          <div class="article-info">
+            <span v-cloak>{{time}}</span>
+          </div>
+        </div>
+        <div class="article-content">
+          <p>
+            <img :src="picture" alt="" style="width: 100%;height: 100%;">
+          </p>
+          <p style="margin-top:20px;white-space: wrap;" v-cloak>
+            {{action}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 文章框架结束 -->
+  <script src="./assets/js/common/getURL.js"></script>
+  <script src="./assets/js/page/article.js"></script>
+</body>
+
+</html>

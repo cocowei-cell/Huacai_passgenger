@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="../assets/js/network/getstatue.js"></script>
+    <script src="./../assets/js/network/islogin.js"></script>
+    <script>ok('/index.html');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="./../assets/lib/nprogress/nprogress.css">
+    <script src="./../assets/lib/nprogress/nprogress.js"></script>
+    <link rel="stylesheet" href="./../assets/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./../assets/css/profile.css">
+    <style>
+        table td,
+        th {
+            padding: 5px !important;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        table thead th {
+            font-weight: bold !important;
+        }
+    </style>
+</head>
+
+<body>
+    <script>NProgress.start()</script>
+    <div id="app">
+        <div class="main">
+            <nav class="navbar">
+                <div class="pull-left backIndex"><a href="./../index.html">返回首页</a></div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./../User/password-reset.html">修改密码</a></li>
+                    <li id="logOut"><a href="javascript:;" @click="outPage">退出</a></li>
+                </ul>
+            </nav>
+            <div class="container-fluid pad">
+                <div class="page-title">
+                    <h1>申请的环卫志愿</h1>
+                </div>
+                <div class="page-action">
+                    <form class="form-inline" id="infoForm">
+                        <select class="form-control input-sm" v-model="statue">
+                            <option value="1">已审核</option>
+                            <option value="0">未审核</option>
+                        </select>
+                        <button @click.prevent="filters(1)" class="btn btn-default btn-sm">筛选</button>
+                    </form>
+                    <ul class="pagination pagination-sm pull-right" id="listInfo" v-cloak>
+                        <!-- 页码 -->
+                        <ul class="pagination">
+                            <li :class="{disabled:action.page ===1}">
+                                <a href="javascript:;" aria-label="Previous" @click="geta(--action.page)">
+                                    <span aria-hidden="true">上一页</span>
+                                </a>
+                            </li>
+                            <li v-for="item in action.display" :keys="item" @click.prevent="geta(item)"
+                                :class="{active:action.page ===item}"><a href="javascript:;">{{item}}</a>
+                            </li>
+                            <li :class="{disabled:action.page ===action.pages}">
+                                <a href="javascript:;" aria-label="Next" @click="geta(++action.page)">
+                                    <span aria-hidden="true">下一页</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>时间</th>
+                            <th width="500" class="text-center">图片</th>
+                            <th class="text-center">行为描述</th>
+                            <th class="text-center">状态</th>
+                            <th class="text-center" width="60">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="parInfo">
+                        <tr v-cloak v-for="item in action.records">
+                            <!-- 类展示 -->
+                            <td style="width: 411px;height:212px">{{item.time}}</td>
+                            <td style="width: 411px;height:212px"><img width="100%" height="200" :src="item.picture"
+                                    alt=""></td>
+                            <td style="width: 411px;height:212px;overflow: hidden;">
+                                <p>{{item.action.length>110?item.action.substr(0,110)+'...':item.action}}</p>
+                            </td>
+                            <td class="text-center">{{item.state===0?'未审核':'已审核'}}</td>
+                            <td><a href="javascript:;" @click="deletes(item._id)" class="btn btn-danger">删除</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="aside">
+            <div class="profile">
+                <img class="avatar" :src="userInfo.avator">
+                <h3 v-cloak class="name">{{userInfo.nickName}}</h3>
+            </div>
+            <ul class="nav">
+                <li>
+                    <a href="profile.html">个人信息</a>
+                </li>
+                <li class="active">
+                    <a href="javascript:;">
+                        我提交的环卫行为
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <script>NProgress.done()</script>
+    <script src="./../assets/lib/vue/vue.min.js"></script>
+    <script src="./../assets/lib/jquery/jquery.min.js"></script>
+    <script src="./../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./../assets/js/common/logout.js"></script>
+    <script>
+        $(function () {
+            new Vue({
+                el: '#app',
+                data: {
+                    userInfo: {},
+                    statue: 0,
+                    action: {}
+                },
+                methods: {
+                    async getUserInfo() {
+                        if (await islogin()) {
+                            this.userInfo = await islogin();
+                            nickname = this.userInfo.nickName;
+                        } else {
+                            logoutook();
+                            return;
+                        }
+                    },
+                    getactions(page, state) {
+                        var that = this;
+                        setTimeout(function () {
+                            that.action = {};
+                            $.ajax({
+                                type: 'get',
+                                url: '/user/getactions',
+                                data: {
+                                    page: page,
+                                    state: state
+                                },
+                                success: function (res) {
+                                    that.action = res;
+                                    console.log(res);
+                                }
+                            })
+                        })
+                    },
+                    geta(page) {
+                        if (page > this.action.pages) {
+                            this.action.page = this.action.pages;
+                            return;
+                        } else if (page <= 0) {
+                            this.action.page = 1;
+                            return;
+                        } else {
+                            this.getactions(page, this.statue);
+                        }
+                    },
+                    filters(page) {
+                        this.getactions(page, this.statue);
+                    },
+                    deletes(id) {
+                        var tagd = confirm('您确定删除该志愿行为吗？');
+                        if (tagd) {
+                            $.ajax({
+                                type: 'delete',
+                                url: '/deleteact/' + id,
+                                success: function (data) {
+                                    location.reload();
+                                }
+                            })
+                        }
+                    },
+                    outPage() {
+                        $.ajax({
+                            type: 'post',
+                            url: '/logout',
+                            success: function () {
+                                logoutook();
+                                location.replace('/index.html');
+                            }
+                        })
+                    },
+                },
+                created() {
+                    this.getUserInfo();
+                    this.getactions(1, 0)
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

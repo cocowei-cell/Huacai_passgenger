@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script src="./../assets/lib/jquery/jquery.min.js"></script>
+  <script src="./../assets/js/network/islogin.js"></script>
+  <script src="./../assets/js/network/getrole.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理员</title>
+  <link rel="stylesheet" href="./../assets/lib/nprogress/nprogress.css">
+  <script src="./../assets/lib/nprogress/nprogress.js"></script>
+  <link rel="stylesheet" href="./../assets/lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="./../assets/css/profile.css">
+  <style>
+    table td,
+    th {
+      padding: 5px !important;
+    }
+
+    table thead th {
+      font-weight: bold !important;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+  <link rel="stylesheet" href="./../assets/css/common.css">
+</head>
+
+<body>
+  <script>NProgress.start()</script>
+  <div id="app">
+    <div>
+      <div class="main">
+        <nav class="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="./reset-pass.html">重置用户密码</a></li>
+            <li id="logOut"><a href="javascript:;" @click="outPage">退出</a></li>
+          </ul>
+        </nav>
+        <div class="container-fluid pad">
+          <div class="page-title">
+            <h1>所有志愿行为</h1>
+          </div>
+          <div class="page-action">
+            <!-- show when multiple checked -->
+            <form class="form-inline" id="infoForm">
+              <select class="form-control input-sm" v-model="statue">
+                <option value="1">已审核</option>
+                <option value="0">未审核</option>
+              </select>
+              <button class="btn btn-default btn-sm" @click.prevent="filters(1)">筛选</button>
+            </form>
+            <ul class="pagination pagination-sm pull-right" id="listInfo">
+              <!-- 页码 -->
+              <div class="page">
+                <nav aria-label="Page navigation">
+                  <ul class="pagination">
+                    <li :class="{disabled:action.page ===1}">
+                      <a href="javascript:;" aria-label="Previous" @click="geta(--action.page)">
+                        <span aria-hidden="true">上一页</span>
+                      </a>
+                    </li>
+                    <li v-for="item in action.display" :keys="item" @click.prevent="geta(item)"
+                      :class="{active:action.page ===item}"><a href="javascript:;">{{item}}</a>
+                    </li>
+                    <li :class="{disabled:action.page ===action.pages}">
+                      <a href="javascript:;" aria-label="Next" @click="geta(++action.page)">
+                        <span aria-hidden="true">下一页</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </ul>
+          </div>
+          <table class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>手机号码</th>
+                <th>姓名</th>
+                <th class="text-center">学号</th>
+                <th class="text-center">时间</th>
+                <th class="text-center" width="100">操作</th>
+              </tr>
+            </thead>
+            <tbody id="parInfo">
+              <!-- 类展示 -->
+              <!-- 15个数据 -->
+              <tr v-cloak v-for="item in action.records">
+                <td>{{item.user.telnumber}}</td>
+                <td>{{item.user.name}}</td>
+                <td class="text-center">{{item.user.number}}</td>
+                <td class="text-center">{{item.time}}</td>
+                <td class="text-center" width="130">
+                  <a class="btn btn-danger" @click="deletes(item._id)" href="javascript:;">删除</a>
+                  <a class="btn btn-primary" @click="showInfo(item._id)" href="javascript:;">查看</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div style="display:block;" class="detail" v-show="isShow">
+        <div class="info">
+          <h1>审核表</h1>
+          <span @click="isShow=false">X</span>
+        </div>
+        <article>
+          <div class="img">
+            <h2>图片</h2>
+            <div class="showimg">
+              <ul class="clearfix">
+                <li class="fl"><img :src="bar.picture" alt=""></li>
+              </ul>
+            </div>
+          </div>
+          <div class="par">
+            <h2>行为描述</h2>
+            <p v-cloak>
+              {{bar.action}}
+            </p>
+          </div>
+          <div v-cloak class="footer" :class="{hidden:bar.state==1}">
+            <a href="javascript:;" @click="pass(bar._id,bar.user._id)" class="btn btn-danger">通过</a>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="aside">
+      <div class="profile">
+        <img class="avatar" :src="userInfo.avator">
+        <h3 v-cloak class="name">{{userInfo.nickName}}</h3>
+      </div>
+      <ul class="nav">
+        <li>
+          <a href="./index.html">
+            首页
+          </a>
+        </li>
+        <li class="active">
+          <a href="#menu-alls" class="collapsed" data-toggle="collapse">
+            志愿
+          </a>
+          <ul id="menu-alls" class="collapse in">
+            <li class="active"><a href="javascript:;">所有志愿行为</a></li>
+            <li><a href="rank.html">环卫志愿排名</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="contuser.html">用户</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>NProgress.done()</script>
+  <script src="./../assets/lib/vue/vue.min.js"></script>
+  <script src="./../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="./../assets/js/common/logout.js"></script>
+  <script src="./../assets/js/page/actionAll.js"></script>
+</body>
+
+</html>

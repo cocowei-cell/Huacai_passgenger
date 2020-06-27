@@ -1,0 +1,603 @@
+﻿@import './base.css';
+body {
+    background-color: #f5f5f5;
+}
+
+nav {
+    position: sticky;
+    /* min-width: 1902px; */
+    top: 0;
+    z-index: 9999;
+}
+
+.layui-nav {
+    height: 60px;
+}
+
+.rightMA {
+    margin-right: 100px;
+}
+
+.input a {
+    position: absolute;
+    left: 19%;
+    top: 9px;
+    color: #fff;
+    font-size: 2em;
+}
+
+.input input {
+    height: 30px;
+    width: 353px;
+    font-size: 1em;
+    text-indent: 10px;
+    border: 1px solid #008c8c;
+    border-radius: 20px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: all .3s;
+}
+
+.input button {
+    width: 54px;
+    border: 1px solid #008c8c;
+    border-left: 0;
+    border-radius: 20px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 30px;
+    cursor: pointer;
+}
+
+.icon-sousuo {
+    font-size: 24px;
+    vertical-align: middle;
+}
+
+/* 主区域 */
+
+/* 侧边栏 */
+
+article {
+    margin-top: 13px !important;
+}
+
+aside.zuo {
+    height: 378px;
+    width: 213px;
+    line-height: 378px;
+    background-color: #272c33;
+    text-align: center;
+    position: relative;
+    background: url(./../img/timg1.jpg);
+}
+
+aside.zuo a {
+    display: block;
+    color: green;
+    font-size: 1.4em;
+    text-shadow:0px 0px 30px green;
+}
+
+aside.zuo:hover .gif {
+    display: block;
+}
+
+aside.zuo .gif {
+    position: absolute;
+    left: -207px;
+    top: -24%;
+    z-index: 99999;
+    display: none;
+    width: 200px;
+    height: 200px;
+}
+
+aside.zuo .gif img {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+}
+
+article .main {
+    /* widows: 815px; */
+    width: 815px;
+    height: 378px;
+    margin-left: 15px;
+}
+
+aside.you {
+    height: 378px;
+    width: 213px;
+    background-color: #fdfdfd;
+}
+
+.layui-carousel {
+    height: 100% !important;
+    width: 100%;
+}
+
+.layui-carousel img {
+    width: 100%;
+    height: auto;
+}
+
+.register {
+    text-align: center;
+    width: 171px;
+    margin: 0 auto;
+    margin-top: 47px;
+}
+
+.register .reg {
+    color: #333333;
+    font-size: 1.1em;
+}
+
+.register .btn {
+    height: 41px;
+    background-color: #00c758;
+    border-radius: 18px;
+    line-height: 41px;
+    font-size: 16px;
+    color: #fff;
+    margin-top: 25px;
+}
+
+.register .btn:hover {
+    cursor: pointer;
+    background: #00AD4D;
+}
+
+.register .power {
+    margin-top: 67px;
+    color: #666666;
+}
+
+.register .img {
+    display: inline-block;
+    text-align: center;
+    width: 87px;
+    height: 87px;
+    cursor: pointer;
+    margin-top: 54px;
+}
+
+.register .img img {
+    width: 83px;
+    height: 83px;
+}
+
+/* 横幅 */
+
+div.banner2 a.img {
+    display: block;
+}
+
+div.banner2 {
+    margin-top: 15px;
+    height: 66px;
+    background-color: #fff;
+    line-height: 66px;
+}
+
+div.banner2 h2 {
+    margin-left: 50px;
+    font-size: 16px;
+}
+
+div.banner2 .img {
+    margin-left: -10px;
+}
+
+div.banner2 .img ul>li {
+    display: inline-block;
+    margin-left: 98px;
+}
+
+div.banner2 .img ul>li img {
+    width: 119px;
+    height: 49px;
+    vertical-align: middle;
+}
+
+/* 社团分类 */
+
+.unit {
+    margin-top: 22px;
+    position: relative;
+}
+
+.unit h2 {
+    margin-top: 28px;
+    color: #111111;
+    font-size: 24px;
+}
+
+.unit .container ul>li {
+    float: left;
+    width: 237px;
+    height: 267px;
+    background-color: #fff;
+}
+
+.unit .longzi {
+    margin-top: 18px;
+}
+
+.unit .container ul>li {
+    margin-left: 21px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.unit .container ul>li:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px;
+}
+
+.unit .container ul>li.spec {
+    margin-left: 0;
+}
+
+.unit .container ul>li .img img {
+    width: 237px;
+    height: 136px;
+}
+
+.unit .container ul>li .img {
+    color: #000;
+    position: relative;
+}
+
+/* 蒙层 */
+
+.unit .container ul>li .img .model {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+}
+
+.unit .container ul>li .img .title, .unit .container ul>li .img .signUP {
+    color: #ffff;
+    position: absolute;
+    z-index: 10;
+}
+
+.unit .container ul>li .img .title {
+    text-align: center;
+    width: 216px;
+    height: 66px;
+    left: 9px;
+    top: 45px;
+    font-size: 24px;
+}
+
+.unit .container ul>li .img .signUP {
+    left: 0;
+    top: 0;
+    height: 30px;
+    padding: 0 4px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.unit .container ul>li .img .active {
+    background-color: #56b929;
+}
+
+.unit .container ul>li .img .ready {
+    background-color: #55a8ff;
+}
+
+.unit .container ul>li .img .end {
+    background-color: #ccc;
+}
+
+.unit .container ul>li .info {
+    padding-left: 4px;
+    color: #999999;
+    margin-top: 20px;
+}
+
+.unit .container .item {
+    overflow: hidden;
+    height: 287px;
+    position: relative;
+    width: 100%;
+}
+
+.unit .container .before {
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, .1);
+    left: -62px;
+    top: 152px;
+    font-size: 2em;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    color: #007A8D;
+}
+
+.unit .container .after {
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, .1);
+    top: 150px;
+    right: -57px;
+    font-size: 2em;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    color: #007A8D;
+}
+
+#slider {
+    overflow: hidden;
+}
+
+/* 蒙层 */
+
+.big-container {
+    position: relative;
+}
+
+.allModel {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 666;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.login {
+    position: absolute;
+    top: 270px;
+    width: 563px;
+    height: 392px;
+    background-color: #fff;
+    z-index: 999;
+    text-align: center;
+    display: none;
+}
+
+@media screen and (min-width:1269px) {
+     .login {
+left: 50%;
+    transform:translate(-50%);
+}
+
+}
+
+@media screen and (max-width:1024px) {
+     .login {
+
+left: 620px;
+}
+}
+
+.login .main .logform {
+    margin: 0 auto;
+    width: 359px;
+    position: relative;
+}
+
+.login .main .logform .user, .login .main .logform .pass {
+    width: 100%;
+    height: 44px;
+    margin-top: 31px;
+    position: relative;
+}
+
+.login .main .logform .pass {
+    margin-bottom: 31px;
+}
+
+.login .main {
+    margin-top: 20px;
+}
+
+.login .main .logform input {
+    height: 100%;
+    width: 100%;
+    padding-left: 44px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all .2s;
+    border: 1px solid #dddddd;
+    line-height: 44px;
+}
+
+.login .main .logform input::placeholder {
+    color: #bdbdbd;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.login .main .logform input:focus {
+    border-radius: 2px;
+    border: 1px solid #00c758;
+}
+
+.login .main .logform input.errorIn {
+    border-color: red;
+}
+
+.login .main .logform button {
+    width: 100%;
+    height: 44px;
+    font-size: 18px;
+    border-radius: 2px;
+    background-color: #55b929;
+    border: 1px solid;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login .main .footer {
+    padding-top: 15px;
+    user-select: none;
+    width: 359px;
+    margin: 0 auto;
+}
+
+.login .main .footer ul>li, .login .main .footer ul>li a {
+    color: #999999;
+}
+
+.login .main .footer ul>li:hover, .login .main .footer ul>li a:hover {
+    color: #666666;
+}
+
+.login .main .footer ul>li:nth-child(4) a {
+    color: #49af4f;
+}
+
+.login .main .footer ul>li.item {
+    color: #ccc;
+    margin: 0 8.5px;
+}
+
+.login .main i {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    font-size: 32px;
+    margin-left: 6px;
+    color: #ccc;
+}
+
+#checkbox:checked {
+    background-color: #00c758;
+}
+
+#close {
+    position: absolute;
+    top: 11px;
+    right: 13px;
+    cursor: pointer;
+    padding: 0 5px;
+    color: #383838;
+    font-weight: bold;
+}
+
+#close:hover {
+    border: 1px solid transparent;
+    border-radius: 50%;
+    background-color: rgba(1, 168, 223, 0.246);
+}
+
+.categories {
+    margin-top: 17px;
+}
+
+.categories ul>dt:nth-child(even) {
+    margin: 0 10px;
+}
+
+.categories ul>dt:nth-child(odd) {
+    cursor: pointer;
+}
+
+.categories ul>dt.active {
+    color: #00c758;
+}
+
+/* 页脚开始 */
+
+footer {
+    line-height: 100px;
+    text-align: center;
+    margin-top: 60px;
+    height: 100px;
+    width: 100%;
+    background-color: #333333;
+    color: #fff;
+}
+
+.navbar {
+    position: fixed;
+    right: 19px;
+    top: 578px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.navbar ul li a {
+    color: #fff;
+}
+
+.navbar ul li:first-child {
+    width: 30px;
+    height: 55px;
+    border: 1px solid #00c758;
+    border-radius: 4px;
+    padding-top: 6px;
+    background-color: #00c758;
+}
+
+.navbar ul li:nth-child(2) {
+    margin-top: 10px;
+    width: 30px;
+    border: 1px solid #00c758;
+    border-bottom: 0;
+    border-radius: 4px;
+    padding-top: 6px;
+    background-color: #00c758;
+}
+
+.navbar ul li:last-child {
+    border: 1px solid #d8d8d8;
+    border-top: 0;
+    cursor: pointer;
+}
+
+.navbar ul li:last-child:hover {
+    background-color: #ccc;
+}
+
+.navbar ul li i {
+    font-size: 28px;
+}
+
+.error {
+    position: absolute;
+    left: 0;
+    bottom: 49px;
+    color: red;
+}
+
+nav .layui-nav li .dataList {
+    margin-top: 1px;
+    left: 13px;
+    position: absolute;
+    background-color: #fafafa;
+    width: 339px;
+    z-index: 9999;
+    color: #000;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 2px #ccc;
+}
+
+nav .layui-nav li .dataList li {
+    font-size: 1.1em;
+    padding: 11px;
+    cursor: default;
+}
+
+nav .layui-nav li .dataList li:hover {
+    background-color: rgb(240, 240, 240);
+}

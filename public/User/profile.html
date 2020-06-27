@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="../assets/js/network/getstatue.js"></script>
+    <script src="./../assets/js/network/islogin.js"></script>
+    <script>ok('./../index.html');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="./../assets/lib/nprogress/nprogress.css">
+    <script src="./../assets/lib/nprogress/nprogress.js"></script>
+    <link rel="stylesheet" href="./../assets/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./../assets/css/profile.css">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <script>NProgress.start()</script>
+    <div id="app">
+        <div class="main">
+            <nav class="navbar">
+                <div class="pull-left backIndex"><a href="./../index.html">返回首页</a></div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./../User/password-reset.html"><i class="fa fa-user"></i>修改密码</a></li>
+                    <li id="logOut"><a href="javascript:;" @click="outPage">退出</a></li>
+                </ul>
+            </nav>
+            <div class="container-fluid pad">
+                <div class="page-title">
+                    <h1>用户</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" id="edit">
+                        <form id="userForm" autocomplete="off">
+                            <h2>修改您的信息</h2>
+                            <div class="form-group">
+                                <label>昵称</label>
+                                <input class="form-control" type="text" placeholder="请输入修改的昵称" name="newnickName"
+                                    spellcheck="false" id="nick">
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="submit">修改</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="aside">
+            <div class="profile">
+                <img class="avatar" :src="userInfo.avator">
+                <h3 v-cloak class="name">{{userInfo.nickName}}</h3>
+            </div>
+            <ul class="nav">
+                <li class="active">
+                    <a href="javascript:;">个人信息</a>
+                </li>
+                <li>
+                    <a href="./myaction.html">
+                        我提交的环卫行为
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <script src="./../assets/lib/vue/vue.min.js"></script>
+    <script src="./../assets/lib/jquery/jquery.min.js"></script>
+    <script src="./../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./../assets/js/common/logout.js"></script>
+    <script src="./../assets/js/page/profile.js"></script>
+    <script>NProgress.done()</script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="./../assets/css/register.css">
+    <script src="./../assets/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="navbar w">
+                <a href="./../index.html">华彩志愿</a>
+            </div>
+        </nav>
+
+        <div class="register w">
+            <form class="main">
+                <div class="title">
+                    <h1>注册</h1>
+                </div>
+                <div class="form">
+                    <div class="input email">
+                        <input type="text" placeholder="请输入邮箱地址" spellcheck="false" name="email" id="email">
+                        <p id="emailError">邮箱</p>
+                    </div>
+                    <div class="input nickName">
+                        <input type="text" placeholder="请输入昵称(2-6个字符)" spellcheck="false" name="nickName" id="nickName">
+                        <p id="nicknameError">昵称</p>
+                    </div>
+                    <div class="input pass">
+                        <input type="password" placeholder="请输入6-16位密码(字母或数字)" spellcheck="false" name="password"
+                            id="password">
+                        <p class="error" id="passError">密码</p>
+                    </div>
+                    <div class="btn">
+                        <button id="btnRegister">注册</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <footer style="text-align: center; margin-top: 20px; font-size: 16px; color: #b8b8b8;">
+            powered by zzz&njx
+        </footer>
+    </div>
+
+    <script src="./../assets/js/page/register.js"></script>
+
+</body>
+
+</html>

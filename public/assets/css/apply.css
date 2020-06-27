@@ -1,0 +1,75 @@
+@import 'base.css';
+/* 导航 */
+
+.total-container {
+    overflow: hidden;
+    position: relative;
+}
+
+nav {
+    height: 60px;
+    background: url('https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3035978393,2922781449&fm=26&gp=0.jpg');
+    text-align: center;
+    width: 100%;
+    line-height: 60px;
+    font-size: 1.2em;
+}
+
+nav h1 {
+    display: inline;
+}
+
+nav .back {
+    position: relative;
+    left: 20%;
+    font-size: 1.2em;
+    font: weight 400;
+}
+
+nav h1 {
+    font-size: 1.5em;
+    line-height: 60px;
+}
+
+/* 导航 */
+
+/* 表单 */
+
+.field {
+    text-align: center;
+    margin-top: 33px;
+}
+
+.sad h2 {
+    text-align: left;
+    margin-left: 20px !important;
+    font-size: 1.5em;
+}
+
+.sad {
+    margin-top: 17px;
+    font-size: 1.4em
+}
+
+.field .main {
+    width: 60%;
+    margin: 0 auto;
+}
+
+/* 表单 */
+
+.info {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    width: 492px;
+    height: 208px;
+    background-color:#ccc;
+    border-radius: 5px;
+    border:1px solid #ccc;
+    text-align:center;
+    line-height:208px;
+    font-size: 1.4em;
+    display:none;
+}

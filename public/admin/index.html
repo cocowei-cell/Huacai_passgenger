@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="./../assets/lib/jquery/jquery.min.js"></script>
+    <script src="./../assets/js/network/islogin.js"></script>
+    <script src="./../assets/js/network/getrole.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员</title>
+    <link rel="stylesheet" href="./../assets/lib/nprogress/nprogress.css">
+    <script src="./../assets/lib/nprogress/nprogress.js"></script>
+    <link rel="stylesheet" href="./../assets/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./../assets/css/profile.css">
+    <style>
+        table td,
+        th {
+            padding: 5px !important;
+        }
+
+        table thead th {
+            font-weight: bold !important;
+        }
+    </style>
+</head>
+
+<body>
+    <script>NProgress.start()</script>
+    <div id="app">
+        <div class="main">
+            <nav class="navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./reset-pass.html">重置用户密码</a></li>
+                    <li id="logOut"><a href="javascript:;" @click="outPage">退出</a></li>
+                </ul>
+            </nav>
+            <div class="container-fluid pad">
+                <div class="container-fluid">
+                    <div class="jumbotron text-center">
+                        <h1>华彩志愿后台管理系统</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">今日志愿统计</h3>
+                                </div>
+                                <ul class="list-group">
+                                    <li v-cloak class="list-group-item">
+                                        共<strong>{{counters.todayAction}}</strong>次提交志愿环卫</li>
+                                    <li v-cloak class="list-group-item">审核通过有<strong>{{counters.todayPass}}</strong>个
+                                    </li>
+                                    <li v-cloak class="list-group-item">待审核<strong>{{counters.todayWait}}个</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="aside">
+            <div class="profile">
+                <img class="avatar" :src="userInfo.avator">
+                <h3 class="name" v-cloak>{{userInfo.nickName}}</h3>
+            </div>
+            <ul class="nav">
+                <li class="active">
+                    <a href="javascript:;">
+                        首页
+                    </a>
+                </li>
+                <li>
+                    <a href="#menu-alls" class="collapsed" data-toggle="collapse">
+                        志愿
+                    </a>
+                    <ul id="menu-alls" class="collapse">
+                        <li><a href="actionAll.html">所有志愿行为</a></li>
+                        <li><a href="rank.html">环卫志愿排名</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="contuser.html">用户</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>NProgress.done()</script>
+    <script src="./../assets/lib/vue/vue.min.js"></script>
+    <script src="./../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./../assets/js/common/logout.js"></script>
+    <script>
+        $(function () {
+            new Vue({
+                el: '#app',
+                data: {
+                    userInfo: {},
+                    counters: {}
+                },
+                methods: {
+                    async getUserInfo() {
+                        if (await islogin()) {
+                            this.userInfo = await islogin();
+                        } else {
+                            logoutook();
+                            return;
+                        }
+                    },
+                    outPage() {
+                        $.ajax({
+                            type: 'post',
+                            url: '/logout',
+                            success: function () {
+                                logoutook();
+                                location.replace('/index.html');
+                            }
+                        })
+                    },
+                    getoday() {
+                        var that = this;
+                        $.ajax({
+                            url: '/getoday',
+                            type: 'get',
+                            success: function (res) {
+                                that.counters = res;
+                            }
+                        })
+                    }
+                },
+                created() {
+                    this.getUserInfo();
+                    this.getoday();
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

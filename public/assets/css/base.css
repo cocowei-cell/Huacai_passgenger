@@ -1,0 +1,124 @@
+﻿@import 'iconfont.css';
+[v-cloak] {
+    display: none;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 1800px;
+}
+
+.clearfix::after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+/* 兼容IE */
+
+.clearfix {
+    *zoom: 1;
+}
+
+.fl {
+    float: left !important;
+}
+
+.fr {
+    float: right !important;
+}
+
+.w {
+    width: 66.7% !important;
+    margin: 0 auto;
+    min-width: 1269.3px !important;
+    max-width: 1269.3px !important;
+}
+
+ul {
+    list-style: none !important;
+}
+
+button, input, textarea {
+    outline: 0 !important;
+    outline-offset: 0 !important;
+}
+
+.selectNone {
+    user-select: none !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: #333333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.wait {
+    text-align: center;
+}
+
+@keyframes waits {
+    0%, 100% {
+        background-color: #008c8c;
+        transform: scaleY(1.5);
+    }
+    50% {
+        transform: scaleY(1.0);
+        background-color: #ccc;
+    }
+}
+
+/* 等待动画样式 */
+.wait span {
+    display: inline-block;
+}
+
+.wait span:nth-child(1) {
+    animation: waits 2s infinite ease;
+    animation-delay: .1s;
+    width: 5px;
+    height: 20px;
+}
+
+.wait span:nth-child(2) {
+    animation: waits 2s infinite ease;
+    animation-delay: .2s;
+    width: 5px;
+    height: 20px;
+}
+
+.wait span:nth-child(3) {
+    animation: waits 2s infinite ease;
+    animation-delay: .3s;
+    width: 5px;
+    height: 20px;
+}
+
+.wait span:nth-child(4) {
+    animation: waits 2s infinite ease;
+    animation-delay: .4s;
+    width: 5px;
+    height: 20px;
+}
+
+.allModel {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 666;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: none;
+}
+

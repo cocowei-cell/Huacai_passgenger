@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="./../assets/lib/jquery/jquery.min.js"></script>
+  <script src="./../assets/js/network/islogin.js"></script>
+  <script src="./../assets/js/network/getrole.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理员</title>
+  <link rel="stylesheet" href="./../assets/lib/nprogress/nprogress.css">
+  <script src="./../assets/lib/nprogress/nprogress.js"></script>
+  <link rel="stylesheet" href="./../assets/lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="./../assets/css/profile.css">
+  <style>
+    table td,
+    th {
+      padding: 5px !important;
+    }
+
+    table thead th {
+      font-weight: bold !important;
+    }
+  </style>
+</head>
+
+<body>
+  <script>NProgress.start()</script>
+  <div id="app">
+    <div class="main">
+      <nav class="navbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="javascript:;">重置用户密码</a></li>
+          <li id="logOut"><a href="javascript:;" @click="outPage">退出</a></li>
+        </ul>
+      </nav>
+      <div class="container-fluid">
+        <div class="page-title">
+          <h1>修改密码</h1>
+        </div>
+
+        <form class="form-horizontal" id="modifyForm">
+          <div class="form-group">
+            <label for="old" class="col-sm-3 control-label">用户邮箱</label>
+            <div class="col-sm-7">
+              <input id="old" v-model="email" class="form-control" type="text" placeholder="请输入要修改用户的邮箱" name="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-7">
+              <button type="submit" class="btn btn-primary" @click.prevent="reset" id="reset-pass">重置密码</button>
+            </div>
+          </div>
+        </form>
+        <div style="text-align: center; color: red; font-size: 1.5em;">注意：重置后的默认密码为123456</div>
+      </div>
+    </div>
+    <div class="aside">
+      <div class="profile">
+        <img class="avatar" :src="userInfo.avator">
+        <h3 v-cloak class="name">{{userInfo.nickName}}</h3>
+      </div>
+      <ul class="nav">
+        <li>
+          <a href="index.html">
+            首页
+          </a>
+        </li>
+        <li>
+          <a href="#menu-alls" class="collapsed" data-toggle="collapse">
+            志愿
+          </a>
+          <ul id="menu-alls" class="collapse">
+            <li><a href="actionAll.html">所有志愿行为</a></li>
+            <li><a href="rank.html">环卫志愿排名</a></li>
+          </ul>
+        </li>
+        <li class="active">
+          <a href="javascript:;">用户</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script>NProgress.done()</script>
+  <script src="./../assets/lib/vue/vue.min.js"></script>
+  <script src="./../assets/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="./../assets/js/common/logout.js"></script>
+  <script>
+    $(function () {
+      new Vue({
+        el: '#app',
+        data: {
+          userInfo: {},
+          email: ''
+        },
+        methods: {
+          async getUserInfo() {
+            if (await islogin()) {
+              this.userInfo = await islogin();
+            } else {
+              logoutook();
+              return;
+            }
+          },
+          outPage() {
+            $.ajax({
+              type: 'post',
+              url: '/logout',
+              success: function () {
+                logoutook();
+                location.replace('/index.html');
+              }
+            })
+          },
+          reset() {
+            var that = this;
+            if (this.email.trim().length === 0) {
+              alert('请输入邮箱');
+              return;
+            }
+            var tag = confirm('您将要重置邮箱为：' + this.email.trim() + ',' + '确认是否重置');
+            if (tag === true) {
+              $.ajax({
+                type: 'put',
+                url: '/reset?email=' + that.email.trim(),
+                success: function (e) {
+                  alert('修改成功,该用户密码为123456');
+                },
+                error: function (err) {
+                  alert(err.responseJSON.msg);
+                }
+              })
+            }
+          }
+        },
+        created() {
+          this.getUserInfo();
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>
